@@ -10,6 +10,8 @@ namespace TodoList.Data.Models
         {
             Title = title;
         }
+
+        public int ID { get; set; }
         public string Title { get; set; }
     }
 }

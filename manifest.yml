@@ -1,0 +1,9 @@
+---
+applications:
+- name: TodoListMac
+  memory: 512M
+  buildpack: https://github.com/denissezavala/dotnet-core-buildpack
+  services:
+  - dev
+  env:
+    ASPNETCORE_ENVIRONMENT: production

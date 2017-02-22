@@ -8,10 +8,10 @@ namespace TodoList.Controllers
     {
         private ITodoRepository _repository;
 
-        public HomeController(ITodoRepository todoRepository) 
+        public HomeController(ITodoRepository todoRepository)
         {
             _repository = todoRepository;
-        }        
+        }
 
         public async Task<IActionResult> Index()
         {

@@ -18,7 +18,5 @@ run:
     args:
     - -exc
     - |
-      cd src/TodoListCore
-      export NUGET_PACKAGES=../../packages
       dotnet restore
       dotnet build

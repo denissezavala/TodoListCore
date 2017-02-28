@@ -13,4 +13,4 @@ jobs:
       trigger: true
   - task: compile
     privileged: true
-    file: pipeline/compile.yml
+    file: code/pipeline/compile.yml

@@ -22,18 +22,23 @@ namespace TodoList.Web.Tests.Controllers
             _controller = new HomeController(_todoRepositoryMock);
         }
 
-        [Fact]
-        public async Task TestIndexRetrievesTodos()
-        {
-            var expectedTodos = new List<Todo> {new Todo("Buy milk"), new Todo("Get stamps")};
-            _todoRepositoryMock.GetAll().Returns(expectedTodos);
+        // [Fact]
+        // public async Task TestIndexRetrievesTodos()
+        // {
+        //     var expectedTodos = new List<Todo> {new Todo("Buy milk"), new Todo("Get stamps")};
+        //     _todoRepositoryMock.GetAll().Returns(expectedTodos);
 
-            var result = await _controller.Index() as ViewResult;
+        //     var result = await _controller.Index() as ViewResult;
 
-            var model = result.Model as IEnumerable<Todo>;
+        //     var model = result.Model as IEnumerable<Todo>;
        
-            Assert.NotNull(model);
-            Assert.Equal(expectedTodos, model);
+        //     Assert.NotNull(model);
+        //     Assert.Equal(expectedTodos, model);
+        // }
+
+        [Fact]
+        public void Test() {
+            Console.WriteLine("Testing...");
             Assert.True(false);
         }
     }

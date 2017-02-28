@@ -2,7 +2,7 @@ resources:
   - name: code
     type: git
     source:
-      uri: https://github.com/denissezavala/TodoListCore
+      uri: https://github.com/denissezavala/TodoListCore.git
       branch: master
 
 jobs:

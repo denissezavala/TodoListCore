@@ -23,6 +23,7 @@ namespace TodoList
                 .AddCloudFoundry();
 
             Configuration = builder.Build();
+            var x = "";
         }
 
         public IConfigurationRoot Configuration { get; }

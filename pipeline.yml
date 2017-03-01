@@ -4,6 +4,7 @@ resources:
     source:
       uri: https://github.com/denissezavala/TodoListCore.git
       branch: master
+
   - name: pws
     type: cf
     source:
@@ -17,12 +18,18 @@ resources:
 jobs:
 - name: build
   plan:
-  - aggregate:
-    - get: code
-      trigger: true
+  - get: code
+    trigger: true
   - task: compile
     privileged: true
     file: code/pipeline/compile.yml
+
+- name: deploy
+  plan:
+  - get: code
+    trigger: true
+    passed: [build]
   - put: pws
     params: 
       manifest: code/manifest.yml
+      path: code

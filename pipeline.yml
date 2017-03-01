@@ -4,7 +4,7 @@ resources:
     source:
       uri: https://github.com/denissezavala/TodoListCore.git
       branch: master
-  - name: cf-push
+  - name: pws
     type: cf
     source:
       api: https://api.run.pivotal.io
@@ -23,6 +23,6 @@ jobs:
   - task: compile
     privileged: true
     file: code/pipeline/compile.yml
-  - put: cf-push
+  - put: pws
     params: 
       manifest: code/manifest.yml

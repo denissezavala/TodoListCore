@@ -26,3 +26,4 @@ jobs:
   - put: cf-push
     params: 
       manifest: code/manifest.yml
+      current_app_name: TodoListCore

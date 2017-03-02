@@ -7,13 +7,13 @@ image_resource:
         tag: 1.1.0-sdk-msbuild-rc4
 
 inputs:
-    - name: build
+    - name: code
 
 run:
-    dir: build/test/TodoListCore.Web.Tests.csproj
+    dir: code/test
     path: sh
     args:
     - -exc
     - |
       dotnet restore
-      dotnet test
+      dotnet test ./**/*.csproj

@@ -16,7 +16,7 @@ resources:
       skip_cert_check: false
 
 jobs:
-- name: build
+- name: build-and-test
   plan:
   - get: code
     trigger: true
@@ -31,7 +31,7 @@ jobs:
   plan:
   - get: code
     trigger: true
-    passed: [build]
+    passed: [build-and-test]
   - put: pws
     params: 
       manifest: code/manifest.yml

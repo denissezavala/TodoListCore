@@ -10,9 +10,9 @@ inputs:
     - name: build
 
 run:
-    dir: build/test
+    dir: build
     path: sh
     args:
     - -exc
     - |
-      dotnet test ./**/*.csproj
+      dotnet test test/**/*.csproj

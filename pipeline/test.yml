@@ -1,20 +1,21 @@
 platform: linux
 
 image_resource:
-    type: docker-image
-    source:
-        repository: microsoft/dotnet
-        tag: 1.1.0-sdk-msbuild-rc4
+  type: docker-image
+  source:
+      repository: microsoft/dotnet
+      tag: 1.1.0-sdk-msbuild-rc4
 
 inputs:
-    - name: code
+  - name: code
 
 run:
-    dir: code
-    path: sh
-    args:
-    - -exc
-    - |
-      dotnet restore
-      dotnet build
-      dotnet test test/TodoList.Web.Tests/TodoList.Web.Tests.csproj
+  dir: code
+  path: sh
+  args:
+  - -exc
+  - |
+    dotnet restore
+    dotnet build
+    dotnet test test/TodoList.Web.Tests/TodoList.Web.Tests.csproj
+    dotnet test test/TodoList.Data.Tests/TodoList.Data.Tests.csproj

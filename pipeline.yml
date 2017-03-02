@@ -16,22 +16,19 @@ resources:
       skip_cert_check: false
 
 jobs:
-- name: build-and-test
+- name: test
   plan:
   - get: code
     trigger: true
-  - task: compile
-    privileged: true
-    file: code/pipeline/compile.yml
   - task: test
     privileged: true
     file: code/pipeline/test.yml
-
+    
 - name: deploy
   plan:
   - get: code
     trigger: true
-    passed: [build-and-test]
+    passed: [test]
   - put: pws
     params: 
       manifest: code/manifest.yml

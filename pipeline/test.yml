@@ -1,0 +1,19 @@
+platform: linux
+
+image_resource:
+    type: docker-image
+    source:
+        repository: microsoft/dotnet
+        tag: 1.1.0-sdk-msbuild-rc4
+
+inputs:
+    - name: build
+
+run:
+    dir: build/test/TodoListCore.Web.Tests.csproj
+    path: sh
+    args:
+    - -exc
+    - |
+      dotnet restore
+      dotnet test

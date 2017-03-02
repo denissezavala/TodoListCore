@@ -23,6 +23,9 @@ jobs:
   - task: compile
     privileged: true
     file: code/pipeline/compile.yml
+  - task: test
+    privileged: true
+    file: code/pipeline/test.yml
 
 - name: deploy
   plan:

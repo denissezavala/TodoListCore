@@ -7,13 +7,12 @@ image_resource:
         tag: 1.1.0-sdk-msbuild-rc4
 
 inputs:
-    - name: code
+    - name: build
 
 run:
-    dir: code/test
+    dir: build/test
     path: sh
     args:
     - -exc
     - |
-      dotnet restore
       dotnet test ./**/*.csproj

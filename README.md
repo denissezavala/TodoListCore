@@ -1,6 +1,6 @@
-## Running tests
+## Testing
 
-- `dotnet test` doesn't work with new `.csproj` projects. Waiting for the fix!
+- For integration testing use Microsoft.AspNetCore.TestHost, see [here](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/testing) and [here](https://docs.microsoft.com/en-us/aspnet/core/testing/integration-testing#integration-testing-aspnet-core) for details
 
 ## Concourse CI
 

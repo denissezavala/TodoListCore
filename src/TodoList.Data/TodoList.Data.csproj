@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
     <TargetFramework>netstandard1.6.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>

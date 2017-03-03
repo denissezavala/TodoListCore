@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "TodoList.IntegrationTests": {
+      "commandName": "Project"
+    }
+  }
+}

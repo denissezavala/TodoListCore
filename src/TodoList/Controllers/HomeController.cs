@@ -1,21 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TodoList.Data;
+using TodoList.Data.Models;
 
 namespace TodoList.Controllers
 {
     public class HomeController : Controller
     {
-        private ITodoRepository _repository;
+        private readonly ITodoRepository _repository;
 
-        public HomeController(ITodoRepository todoRepository)
+        public HomeController()
         {
-            _repository = todoRepository;
+//            _repository = todoRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var todos = await _repository.GetAll();
+//            var todos = await _repository.GetAll();
+            var todos = new[] {new Todo {Title = "Hello"}};
             return View(todos);
         }
 

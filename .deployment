@@ -1,2 +1,2 @@
 [config]
-project = src/TodoList/TodoList.csproj
+project = TodoList.Web/TodoList.Web.csproj

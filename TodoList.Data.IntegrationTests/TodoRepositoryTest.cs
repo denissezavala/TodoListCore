@@ -1,6 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using Castle.Core.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -23,7 +21,6 @@ namespace TodoList.Data.IntegrationTests
 
             _repository = new TodoRepository(_context, Substitute.For<ILogger<TodoRepository>>());
         }
-
         
         [Fact]
         public async Task ReturnsAllTodos()

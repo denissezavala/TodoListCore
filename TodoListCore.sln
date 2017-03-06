@@ -2,13 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "TodoList", "TodoList\TodoList.csproj", "{0C149BC3-B475-4EA7-88C2-AECCC268FAF4}"
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "TodoList", "TodoList.Web\TodoList.Web.csproj", "{0C149BC3-B475-4EA7-88C2-AECCC268FAF4}"
 EndProject
 Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "TodoList.Data", "TodoList.Data\TodoList.Data.csproj", "{0766C8EE-030D-4485-A890-BA4380CD1BA4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Web.Tests", "TodoList.Web.Tests\TodoList.Web.Tests.csproj", "{D4375B2C-AFAD-41FB-B165-6FD614BA4A9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Web.Tests", "TodoList.Web.UnitTests\TodoList.Web.UnitTests.csproj", "{D4375B2C-AFAD-41FB-B165-6FD614BA4A9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.IntegrationTests", "TodoList.IntegrationTests\TodoList.IntegrationTests.csproj", "{8015B8C2-4879-4725-97CC-EBF2B66343CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.IntegrationTests", "TodoList.Web.IntegrationTests\TodoList.Web.IntegrationTests.csproj", "{8015B8C2-4879-4725-97CC-EBF2B66343CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.Data.IntegrationTests", "TodoList.Data.IntegrationTests\TodoList.Data.IntegrationTests.csproj", "{7A2B084A-2887-4273-9D56-4BE072BC8B5F}"
 EndProject

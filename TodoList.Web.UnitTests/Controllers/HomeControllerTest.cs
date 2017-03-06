@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
+using Shouldly;
 using TodoList.Data;
 using TodoList.Data.Models;
 using TodoList.Web.Controllers;
@@ -28,10 +29,9 @@ namespace TodoList.Web.UnitTests.Controllers
 
             var result = await _controller.Index() as ViewResult;
 
-            var model = result.Model as IEnumerable<Todo>;
+            var model = result.Model as List<Todo>;
        
-            Assert.NotNull(model);
-            Assert.Equal(expectedTodos, model);
+            model.ShouldBe(expectedTodos);
         }
     }
 }

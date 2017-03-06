@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Shouldly;
 using TodoList.Data.Models;
 using Xunit;
 
@@ -38,7 +39,7 @@ namespace TodoList.Data.IntegrationTests
             var todos = await _repository.GetAll();
 
             // Assert
-            Assert.Equal(expected, todos);
+            todos.ShouldBe(expected);
         }
     }
 }

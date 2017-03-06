@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json;
+using Shouldly;
 using TodoList.Data.Models;
 using Xunit;
 
@@ -67,13 +68,10 @@ namespace TodoList.Web.IntegrationTests
             jsonString.Wait();
             var todos = JsonConvert.DeserializeObject<List<Todo>>(jsonString.Result);
 
-            Assert.Equal(3, todos.Count);
-            Assert.Collection(todos, 
-                t => Assert.Equal("Buy milk", t.Title),
-                t => Assert.Equal("Get stamps", t.Title),
-                t => Assert.Equal("Buy apples", t.Title)
-            );
-
+            todos.Count.ShouldBe(3);
+            todos.ShouldContain(t => t.Title == "Buy milk");
+            todos.ShouldContain(t => t.Title == "Get stamps");
+            todos.ShouldContain(t => t.Title == "Buy apples");
         }
 
         private void InitializeServices(IServiceCollection services)

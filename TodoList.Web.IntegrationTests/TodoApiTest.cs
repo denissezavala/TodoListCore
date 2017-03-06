@@ -1,30 +1,31 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json;
+using TodoList.Data.Models;
 using Xunit;
 
-namespace TodoList.IntegrationTests
+namespace TodoList.Web.IntegrationTests
 {
-    public class HomeTest
+    public class TodoApiTest
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
-        public HomeTest()
+        public TodoApiTest()
         {
             var startupAssembly = typeof(Startup).GetTypeInfo().Assembly;
-            var contentRoot = GetProjectPath("TodoList.sln", "src", startupAssembly);
+            var contentRoot = GetProjectPath("TodoListCore.sln", startupAssembly);
 
             var builder = new WebHostBuilder()
                 .UseContentRoot(contentRoot)
@@ -43,40 +44,44 @@ namespace TodoList.IntegrationTests
             _server.Dispose();
         }
         
-        public async Task Home()
+        [Fact]
+        public async Task AddAndRetrieveTodos()
         {
+            // Arrange
+            var buyApples = new Todo {Title = "Buy apples"};
+            var content = new StringContent(JsonConvert.SerializeObject(buyApples), Encoding.UTF8, "application/json");
+
             // Act
-            var response = await _client.GetAsync("/");
+            var postResponse = await _client.PostAsync("/api/todo", content);
 
             // Assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, postResponse.StatusCode);
+            
+            // Act
+            var getResponse = await _client.GetAsync("/api/todo");
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, getResponse.StatusCode);
+
+            var jsonString = getResponse.Content.ReadAsStringAsync();
+            jsonString.Wait();
+            var todos = JsonConvert.DeserializeObject<List<Todo>>(jsonString.Result);
+
+            Assert.Equal(3, todos.Count);
+            Assert.Collection(todos, 
+                t => Assert.Equal("Buy milk", t.Title),
+                t => Assert.Equal("Get stamps", t.Title),
+                t => Assert.Equal("Buy apples", t.Title)
+            );
+
         }
 
         private void InitializeServices(IServiceCollection services)
         {
-            var startupAssembly = typeof(Startup).GetTypeInfo().Assembly;
-
-            // Inject a custom application part manager. Overrides AddMvcCore() because that uses TryAdd().
-            var manager = new ApplicationPartManager();
-            manager.ApplicationParts.Add(new AssemblyPart(startupAssembly));
-
-            manager.FeatureProviders.Add(new ControllerFeatureProvider());
-            manager.FeatureProviders.Add(new ViewComponentFeatureProvider());
-
-            services.AddSingleton(manager);
-
-            services.AddMvc()
-                .AddRazorOptions(options => {
-                    var previous = options.CompilationCallback;
-                    options.CompilationCallback = context => {
-                        previous?.Invoke(context);
-                        var references = MetadataReference.CreateFromFile(startupAssembly.Location);
-                        context.Compilation = context.Compilation.AddReferences(references);
-                    };
-            });
+            services.AddDbContext<TodoListContext>(options => options.UseInMemoryDatabase());
         }
 
-        private string GetProjectPath(string solutionName, string solutionRelativePath, Assembly startupAssembly)
+        private string GetProjectPath(string solutionName, Assembly startupAssembly)
         {
             // Get name of the target project which we want to test
             var projectName = startupAssembly.GetName().Name;
@@ -92,7 +97,7 @@ namespace TodoList.IntegrationTests
                 var solutionFileInfo = new FileInfo(Path.Combine(directoryInfo.FullName, solutionName));
                 if (solutionFileInfo.Exists)
                 {
-                    return Path.GetFullPath(Path.Combine(directoryInfo.FullName, solutionRelativePath, projectName));
+                    return Path.GetFullPath(Path.Combine(directoryInfo.FullName, projectName));
                 }
 
                 directoryInfo = directoryInfo.Parent;

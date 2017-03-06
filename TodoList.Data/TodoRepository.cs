@@ -8,6 +8,7 @@ namespace TodoList.Data
 {
     public interface ITodoRepository {
         Task<IEnumerable<Todo>> GetAll();
+        Task<int> Add(Todo todo);
     }
 
     public class TodoRepository : ITodoRepository
@@ -25,6 +26,12 @@ namespace TodoList.Data
             _logger.LogInformation("Getting all todo items");
             
             return await _dbContext.Todos.ToListAsync();
+        }
+
+        public async Task<int> Add(Todo todo)
+        {
+            _dbContext.Todos.Add(todo);
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }

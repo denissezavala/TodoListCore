@@ -15,7 +15,7 @@ namespace TodoList.Data.Models
 
             var todos = new [] 
             {
-                new Todo("Buy Milk"),
+                new Todo("Buy milk"),
                 new Todo("Get stamps")
             };
 

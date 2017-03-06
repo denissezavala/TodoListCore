@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
-using TodoList.Controllers;
 using TodoList.Data;
 using TodoList.Data.Models;
+using TodoList.Web.Controllers;
 using Xunit;
 
-namespace TodoList.Web.Tests.Controllers
+namespace TodoList.Web.UnitTests.Controllers
 {
     public class HomeControllerTest
     {

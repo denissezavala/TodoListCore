@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using TodoList.Data;
 
-namespace TodoList.Controllers
+namespace TodoList.Web.Controllers
 {
     public class HomeController : Controller
     {

@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Steeltoe.Extensions.Configuration;
 using Steeltoe.CloudFoundry.Connector.PostgreSql.EFCore;
+using Steeltoe.Extensions.Configuration;
 using TodoList.Data;
 using TodoList.Data.Models;
 
-namespace TodoList
+namespace TodoList.Web
 {
     public class Startup
     {

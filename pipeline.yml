@@ -28,6 +28,7 @@ jobs:
   plan:
   - get: code
     trigger: true
+    passed: [unit-test]
   - task: integration-test
     privileged: true
     file: code/pipeline/integration-test.yml
@@ -36,7 +37,7 @@ jobs:
   plan:
   - get: code
     trigger: true
-    passed: [unit-test, integration-test]
+    passed: [integration-test]
   - put: pws
     params: 
       manifest: code/manifest.yml

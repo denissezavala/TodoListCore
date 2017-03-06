@@ -16,19 +16,22 @@ resources:
       skip_cert_check: false
 
 jobs:
-- name: test
+- name: unit-test
   plan:
   - get: code
     trigger: true
-  - task: test
+  - task: unit-test
     privileged: true
-    file: code/pipeline/test.yml
+    file: code/pipeline/unit-test.yml
+  - task: integration-test
+    privileged: true
+    file: code/pipeline/integration-test.yml
     
 - name: deploy
   plan:
   - get: code
     trigger: true
-    passed: [test]
+    passed: [unit-test]
   - put: pws
     params: 
       manifest: code/manifest.yml

@@ -17,5 +17,4 @@ run:
   - |
     dotnet restore
     dotnet build
-    dotnet test test/TodoList.Web.Tests/TodoList.Web.Tests.csproj
-    dotnet test test/TodoList.Data.Tests/TodoList.Data.Tests.csproj
+    dotnet test test/TodoList.Web.UnitTests/TodoList.Web.UnitTests.csproj
